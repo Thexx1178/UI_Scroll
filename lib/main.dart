@@ -1,3 +1,7 @@
+
+
+
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,23 +28,24 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    List<String> items = List.generate(50, (i) => 'Item $i');
+    List<String> items = List.generate(100, (i) => 'Item $i');
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Chapter 6'),
-        backgroundColor: Colors.blue,
-      ),
-      body: ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (BuildContext context,int indx){
-          return ListTile(
-            title: Text(items[indx]),
-            subtitle: Text(items[indx]),
-            onTap: (){
-              print(items[indx]);
-            },
+      appBar: AppBar(title: Text('Chapter 6'), backgroundColor: Colors.blue),
+      body: GridView.builder(
+        padding: EdgeInsets.all(8.0),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,
+          mainAxisSpacing: 8.0,
+          crossAxisSpacing: 8.0,
+          childAspectRatio: 1.5
+        ),
+        itemCount: 100,
+        itemBuilder: (BuildContext context,int idx){
+          return Container(
+            color: Colors.teal[100*(idx%6)],
+            child: Center(
+              child: Text(items[idx]),
+            ),
           );
         },
       ),
